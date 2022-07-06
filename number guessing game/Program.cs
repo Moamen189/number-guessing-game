@@ -20,9 +20,49 @@ namespace number_guessing_game
 
             Console.WriteLine("What is your name?");
 
-            string input = Console.ReadLine();
+            string inputName = Console.ReadLine();
 
-            Console.WriteLine($"Hello {input}, Let's play a game ....");
+            Console.WriteLine($"Hello {inputName}, Let's play a game ....");
+
+            int correctNumber = 7;
+
+            int guess = 0;
+
+            Console.WriteLine("Guess a number between 1 and 10");
+
+            while(guess != correctNumber)
+            {
+                string input = Console.ReadLine();
+
+                // Cast to int and put in Guess
+
+                guess = int.Parse(input);
+
+                //Match To Correct Number 
+
+                if(guess != correctNumber)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+
+
+                    Console.WriteLine($"Wrong Number Please Try again");
+
+                    Console.ResetColor();
+
+                }
+            }
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+
+
+            Console.WriteLine($"you are CORRECT");
+
+            Console.ResetColor();
+
+
+
 
 
         }
