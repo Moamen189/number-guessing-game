@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 
 namespace number_guessing_game
 {
     internal class Program
     {
-        static void Main(string[] args)
+        public static void GetAppInfo()
         {
             string appName = "Number Guesser";
             string appVersion = "1.0.0";
@@ -17,49 +17,99 @@ namespace number_guessing_game
             Console.WriteLine($"{appName}: Version ${appVersion} by {appAuthor}");
 
             Console.ResetColor();
+        }
 
+        public static void GreetUser()
+        {
             Console.WriteLine("What is your name?");
 
             string inputName = Console.ReadLine();
 
             Console.WriteLine($"Hello {inputName}, Let's play a game ....");
+        }
 
-            int correctNumber = 7;
+        public static void PrintColorMessage(ConsoleColor color , string message)
+        {
+            Console.ForegroundColor = color;
 
-            int guess = 0;
 
-            Console.WriteLine("Guess a number between 1 and 10");
 
-            while(guess != correctNumber)
+            Console.WriteLine(message);
+
+            Console.ResetColor();
+        }
+        static void Main(string[] args)
+        {
+            
+            GetAppInfo();
+
+           GreetUser();
+
+            while (true)
             {
-                string input = Console.ReadLine();
+                //int correctNumber = 7;
+                Random random = new Random();
 
-                // Cast to int and put in Guess
+                int correctNumber = random.Next(1, 10);
 
-                guess = int.Parse(input);
+                int guess = 0;
 
-                //Match To Correct Number 
+                Console.WriteLine("Guess a number between 1 and 10");
 
-                if(guess != correctNumber)
+                while (guess != correctNumber)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    string input = Console.ReadLine();
+
+                    if (!int.TryParse(input, out guess))
+                    {
+
+                        PrintColorMessage(ConsoleColor.Red, "Please use an actual number");
+             
+                        // Keep going
+                        continue;
+                    }
+
+                    // Cast to int and put in Guess
+
+                    guess = int.Parse(input);
+
+                    //Match To Correct Number 
+
+                    if (guess != correctNumber)
+                    {
+
+                        PrintColorMessage(ConsoleColor.Red, "Wrong Number Please try again");
 
 
+                    }
+                }
 
-                    Console.WriteLine($"Wrong Number Please Try again");
+                PrintColorMessage(ConsoleColor.Yellow, "You are CORRECT..!!");
 
-                    Console.ResetColor();
 
+               
+
+
+                Console.WriteLine("Play Again? [Y or N]");
+
+                // Get answer
+                string answer = Console.ReadLine().ToUpper();
+
+                if (answer == "Y")
+                {
+                    continue;
+                }
+                else if (answer == "N")
+                {
+                    return;
+                }
+                else
+                {
+                    return;
                 }
             }
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
 
-
-
-            Console.WriteLine($"you are CORRECT");
-
-            Console.ResetColor();
 
 
 
