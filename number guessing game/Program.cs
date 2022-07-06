@@ -6,7 +6,11 @@ namespace number_guessing_game
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string appName = "Number Guesser";
+            string appVersion = "1.0.0";
+            string appAuthor = "Moamen Ashraf Muhammed";
+
+            Console.WriteLine($"{appName}: Version ${appVersion} by {appAuthor}");
         }
     }
 }
